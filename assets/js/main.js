@@ -49,7 +49,46 @@ try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'A
 if(r.ok&&j.ok){f.hidden=true;qa('.stepper',f.closest('.cs-form')).forEach(x=>x.hidden=true);note('Thank you. Your enquiry has been saved.','We have it and will reply by email or WhatsApp. You can also message us directly on WhatsApp or by email.');box.focus()}
 else{btn.disabled=false;btn.textContent='Send enquiry';const es=j.errors||{};let first=-1;Object.keys(es).forEach(k=>{const el=f.elements[k==='biz'?'biz':k];if(el){err(el,es[k]);const si=sets.findIndex(s=>s.contains(el));if(si>=0&&(first<0||si<first))first=si}});if(first>=0)show(first);note(r.status===429?'Please try again later':'Please check the highlighted fields',es.form||'Some details need a change before we can save your enquiry. Nothing was lost; you can also use WhatsApp or email.')}}
 catch(_){btn.disabled=false;btn.textContent='Send enquiry';note('Not saved','The enquiry could not be sent because the connection failed. Please try again, or use WhatsApp or email below.')}})}
-function init(){R.classList.add('js');hdr();prog();reveal();menu();svtabs();carousel();orbit();filters();cursor();enquiry();const h=q('header');if(h&&'ResizeObserver' in window){if(window.__ro)window.__ro.disconnect();window.__ro=new ResizeObserver(hdr);window.__ro.observe(h)}}
+
+function initHeroPortal() {
+  const portal = document.querySelector('.o-portal');
+  if (!portal || portal.__portalInit) return;
+  portal.__portalInit = true;
+  
+  const slides = portal.querySelectorAll('.o-slide');
+  if (!slides || slides.length === 0) return;
+  
+  let current = 0;
+  let timer = null;
+  
+  function showNext() {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }
+  
+  function start() {
+    if (timer) clearInterval(timer);
+    timer = setInterval(showNext, 2000);
+  }
+  
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+  
+  start();
+  portal.addEventListener('mouseenter', stop);
+  portal.addEventListener('mouseleave', start);
+  portal.addEventListener('click', () => {
+    showNext();
+    start();
+  });
+}
+
+function init(){initHeroPortal();R.classList.add('js');hdr();prog();reveal();menu();svtabs();carousel();orbit();filters();cursor();enquiry();const h=q('header');if(h&&'ResizeObserver' in window){if(window.__ro)window.__ro.disconnect();window.__ro=new ResizeObserver(hdr);window.__ro.observe(h)}}
 if(!window.__dms){window.__dms=1;let tk=0;addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(()=>{hdr();prog();tk=0})}},{passive:true});addEventListener('resize',hdr);
 document.addEventListener('click',e=>{const b=e.target.closest('[data-confirm]');if(b&&!confirm(b.dataset.confirm))e.preventDefault()})}
 window.dmsInit=init;init()})();
