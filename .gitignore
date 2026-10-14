@@ -1,0 +1,7 @@
+*.py
+*.log
+*.png
+*.bak
+*.tmp
+recovered_*.css
+step*.css

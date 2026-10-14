@@ -190,181 +190,414 @@ footer{background:#04292b;border-top:4px solid var(--a);color:#b7d3d1;padding:cl
 @media(max-width:1200px){.orbit{right:0}}
 .ol{font-size:clamp(.74rem,.82vw,.86rem)}@media(max-width:900px){.orbit .ol,.ol{font-size:.78rem}}
 
-/* === ULTRA-CLEAN SELECTED WORK SHOWCASE OVERRIDES === */
-.wc-media {
-  position: relative !important;
-  overflow: hidden !important;
-  background: #021a1b !important;
-  aspect-ratio: 16/9 !important;
-  border-bottom: 1px solid rgba(45, 212, 191, 0.12) !important;
+
+/* === POSH AGENCY MOTION & ANIMATION SYSTEM === */
+.hero {
+  position: relative;
+  overflow: hidden;
 }
-.wc-media picture,
-.wc-media img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
-  background-color: transparent !important;
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 850px;
+  max-height: 850px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,161,55,0.12) 0%, rgba(6,78,82,0.06) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  animation: heroGlowPulse 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+@keyframes heroGlowPulse {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.7; }
+  50% { transform: scale(1.15) translate(-30px, 20px); opacity: 1; }
+  100% { transform: scale(0.95) translate(20px, -20px); opacity: 0.8; }
+}
+
+header {
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s ease, border-color 0.35s ease !important;
+}
+header.scrolled {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(6, 78, 82, 0.1) !important;
+  box-shadow: 0 10px 30px rgba(6, 78, 82, 0.08) !important;
+}
+
+.hero-in h1 .ln {
+  display: block;
+  opacity: 1;
+}
+.hero-in h1 .ln:nth-child(1) { animation-delay: 0.12s; }
+.hero-in h1 .ln:nth-child(2) { animation-delay: 0.24s; }
+.hero-in h1 .ln:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes kineticLn {
+  to {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg);
+  }
+}
+
+.hero-in .eyebrow {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: kineticFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.05s forwards;
+}
+.hero-in .hsub {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: kineticFade 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+.hero-in .bt {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: kineticFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+@keyframes kineticFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wcard {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+  will-change: transform, box-shadow;
+}
+.wcard:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  box-shadow: 0 24px 50px rgba(6, 78, 82, 0.16) !important;
+  border-color: rgba(230, 161, 55, 0.4) !important;
+}
+.wcard .wc-media img {
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 .wcard:hover .wc-media img {
-  transform: scale(1.04) !important;
-}
-.wcard {
-  display: flex !important;
-  flex-direction: column !important;
-  border: 1px solid rgba(45, 212, 191, 0.22) !important;
-  border-radius: 16px !important;
-  background: rgba(3, 22, 25, 0.88) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  overflow: hidden !important;
-  text-decoration: none !important;
-  color: inherit !important;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
-  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
-}
-.wcard:hover {
-  border-color: #e6a137 !important;
-  transform: translateY(-5px) !important;
-  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(230, 161, 55, 0.2) !important;
-}
-.wc-bar {
-  padding: 14px 18px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  background: rgba(4, 30, 34, 0.6) !important;
-}
-.wc-bar span {
-  font-family: var(--fb, sans-serif) !important;
-  font-weight: 700 !important;
-  font-size: 1.05rem !important;
-  color: #ffffff !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-.wc-bar span b {
-  color: #e6a137 !important;
-  transition: transform 0.3s ease !important;
-}
-.wcard:hover .wc-bar span b {
-  transform: translate(2px, -2px) !important;
-}
-.wc-bar small {
-  font-family: var(--fm, monospace) !important;
-  font-size: 0.72rem !important;
-  color: #2dd4bf !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-}
-.wc-info {
-  padding: 16px 18px !important;
-  font-size: 0.88rem !important;
-  line-height: 1.5 !important;
-  color: #9cb8b6 !important;
-  background: rgba(3, 20, 23, 0.95) !important;
-}
-.wc-info b {
-  color: #ffffff !important;
-  font-weight: 600 !important;
-}
-/* Eliminate any scanner line or tag overlays */
-.scan-laser,
-.wc-tag,
-.wc-slogan-ribbon,
-.ev,
-.legend,
-.split-note {
-  display: none !important;
+  transform: scale(1.05) !important;
 }
 
-/* === ALGORA-STYLE HERO 'O' MOTION PORTAL & ALIGNMENT FIX === */
-.hero h1 .ln:nth-child(3) {
-  display: inline-flex !important;
-  align-items: baseline !important;
-  white-space: nowrap !important;
+.sv-panel {
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.oimg,
-.o-portal {
-  position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 0.70em !important;
-  height: 0.70em !important;
-  border-radius: 50% !important;
-  vertical-align: -0.05em !important;
-  margin: 0 0.02em !important;
-  overflow: hidden !important;
-  line-height: 1 !important;
-  background: #021a1b !important;
-  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.45), 0 0 16px rgba(45, 212, 191, 0.35), 0 4px 20px rgba(0, 0, 0, 0.7) !important;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
-  cursor: pointer !important;
+.sv-panel.on {
+  animation: panelSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
-.oimg:hover,
-.o-portal:hover {
-  transform: scale(1.12) !important;
-  box-shadow: 0 0 0 2px rgba(230, 161, 55, 0.85), 0 0 24px rgba(230, 161, 55, 0.65), 0 8px 30px rgba(0, 0, 0, 0.8) !important;
-}
-
-.o-portal .o-reel {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 50% !important;
-  overflow: hidden !important;
-}
-
-.o-portal .o-slide {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  border-radius: 50% !important;
-  opacity: 0 !important;
-  transform: scale(1.18) rotate(4deg) !important;
-  transition: opacity 0.75s cubic-bezier(0.4, 0, 0.2, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  pointer-events: none !important;
-}
-
-.o-portal .o-slide.active {
-  opacity: 1 !important;
-  transform: scale(1) rotate(0deg) !important;
-}
-
-.o-portal .o-ring {
-  position: absolute !important;
-  inset: 0 !important;
-  border-radius: 50% !important;
-  border: 2px solid rgba(230, 161, 55, 0.75) !important;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5) !important;
-  pointer-events: none !important;
-  z-index: 2 !important;
-  animation: oRingGlow 3.5s ease-in-out infinite !important;
-}
-
-@keyframes oRingGlow {
-  0%, 100% {
-    border-color: rgba(230, 161, 55, 0.85);
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 12px rgba(230, 161, 55, 0.4);
+@keyframes panelSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-  50% {
-    border-color: rgba(45, 212, 191, 0.95);
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 0 16px rgba(45, 212, 191, 0.5);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* ==========================================================================
-   3D ARCHITECTURAL SPATIAL WALKTHROUGH & HERO PORTAL MASTER ENGINE
-   ========================================================================== */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease !important;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease-out;
+  pointer-events: none;
+}
+.btn:hover::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+.btn:hover .arw {
+  transform: translateX(6px) !important;
+}
+
+.rv {
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.rv.pre {
+  opacity: 0;
+  transform: translateY(32px) scale(0.98);
+}
+.rv.in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* === ADVANCED EDITORIAL AGENCY MOTION SYSTEM (Instagram Reels Style) === */
+
+/* Custom Dual Fluid Cursor */
+.cur {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1.5px solid var(--a);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-100px, -100px);
+  transition: opacity 0.25s ease, width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), margin 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, border-color 0.3s ease;
+  mix-blend-mode: exclusion;
+  box-shadow: 0 0 16px rgba(230, 161, 55, 0.25);
+}
+.cur.on {
+  opacity: 0.9;
+}
+.cur.big {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(230, 161, 55, 0.2);
+  border-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+}
+.cur-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--a);
+  border-radius: 50%;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+.cur-dot.on {
+  opacity: 1;
+}
+
+/* 3D Card Perspective and Depth */
+.wk-grid, .agrid, .cards {
+  perspective: 1200px;
+}
+.wcard, .acard, .pc-card {
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
+}
+.wcard:hover, .acard:hover {
+  border-color: rgba(230, 161, 55, 0.5) !important;
+  box-shadow: 0 30px 60px rgba(6, 78, 82, 0.18), 0 0 20px rgba(230, 161, 55, 0.12) !important;
+}
+.wcard .wc-bar b {
+  display: inline-block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.wcard:hover .wc-bar b {
+  transform: translate(3px, -3px);
+  color: var(--a);
+}
+
+/* Editorial Heading Accent Reveals */
+.xw span {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.xw span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--a);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.in .xw span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Subtle Interactive Parallax on Strategy Tags */
+.orbit .ol {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease, box-shadow 0.3s ease !important;
+}
+.orbit .ol:hover {
+  transform: scale(1.1) translateY(-4px) !important;
+  background: #064E52 !important;
+  color: #fff !important;
+  box-shadow: 0 12px 24px rgba(6, 78, 82, 0.25) !important;
+}
+.orbit .ol:hover i {
+  background: var(--a) !important;
+}
+
+/* Section Divider Subtle Line Shimmer */
+.sec {
+  position: relative;
+}
+.sec::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(6, 78, 82, 0.08), rgba(230, 161, 55, 0.15), rgba(6, 78, 82, 0.08), transparent);
+}
+
+/* Mobile Motion Optimizations */
+@media (max-width: 900px) {
+  .cur, .cur-dot { display: none !important; }
+  .wcard:hover, .acard:hover { transform: none !important; }
+}
+
+
+/* === AWWWARDS & GEN-Z AGENCY MOTION EXPERIENCE === */
+
+/* 1. Infinite Luxury Marquee Strip */
+.marquee-strip {
+  width: 100%;
+  overflow: hidden;
+  background: var(--t);
+  color: var(--iv);
+  padding: 18px 0;
+  position: relative;
+  border-top: 1px solid rgba(230, 161, 55, 0.25);
+  border-bottom: 1px solid rgba(230, 161, 55, 0.25);
+  display: flex;
+  user-select: none;
+  box-shadow: 0 10px 30px rgba(6, 78, 82, 0.15);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  animation: marqueeScroll 24s linear infinite;
+  gap: 36px;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-item {
+  font-family: var(--fd);
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+}
+.marquee-item b {
+  color: var(--a);
+  font-size: 1.2em;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* 2. Hero Gradient Shimmer Kinetic Title */
+.hero-in h1 .ln {
+  background: linear-gradient(135deg, #064E52 0%, #0d6368 45%, #E6A137 75%, #064E52 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 8s ease-in-out infinite alternate, kineticLn 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* 3. Bento Spotlight Card Glow (Mouse reactive) */
+.wcard, .acard, .pc-card, .card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid rgba(6, 78, 82, 0.12) !important;
+  box-shadow: 0 8px 24px rgba(6, 78, 82, 0.05);
+}
+.wcard::before, .acard::before, .pc-card::before, .card::before {
+  content: "";
+  position: absolute;
+  top: var(--mouse-y, -1000px);
+  left: var(--mouse-x, -1000px);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(230, 161, 55, 0.16) 0%, rgba(6, 78, 82, 0.06) 40%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 50%;
+  z-index: 1;
+}
+.wcard:hover::before, .acard:hover::before, .pc-card:hover::before, .card:hover::before {
+  opacity: 1;
+}
+
+/* 4. Luxury Floating Badge Animation */
+.pc-pill, .wc-tag, .legend b {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(230, 161, 55, 0.15);
+  color: var(--t);
+  border: 1px solid rgba(230, 161, 55, 0.35);
+  box-shadow: 0 4px 12px rgba(230, 161, 55, 0.1);
+}
+
+/* 5. Cursor Interactive State with 'EXPLORE' Text */
+.cur-badge {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 6px 14px;
+  background: var(--t);
+  color: #fff;
+  font-family: var(--fb);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(6, 78, 82, 0.3);
+  border: 1px solid var(--a);
+}
+.cur-badge.on {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
 
 /* === 3D ARCHITECTURAL SPATIAL WALKTHROUGH STYLES === */
 
@@ -605,70 +838,680 @@ footer {
   display: inline-block;
 }
 
+/* === COMPREHENSIVE KINETIC CONTENT & TYPOGRAPHY ANIMATIONS === */
 
-/* Transparent base layers so 3D spatial viewport is fully visible */
-body {
-  background-color: transparent !important;
+/* 1. Selected Work Campaign Slogan Ribbon */
+.wc-slogan-ribbon {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 14px 0 6px 0;
+  padding: 10px 14px;
+  background: rgba(6, 78, 82, 0.05);
+  border-left: 3px solid var(--a);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wcard:hover .wc-slogan-ribbon {
+  background: rgba(6, 78, 82, 0.1);
+  border-left-color: #13c2c2;
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(19, 194, 194, 0.12);
+}
+
+.wc-slogan-ribbon .ribbon-tag {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--t);
+  opacity: 0.85;
+}
+
+.wc-slogan-ribbon .ribbon-text {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--fb);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #063d40;
+}
+
+.wc-slogan-ribbon .kw {
+  position: relative;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(230, 161, 55, 0.12);
+  color: #042729;
+  transition: all 0.3s ease;
+}
+
+.wcard:hover .wc-slogan-ribbon .kw1 {
+  background: rgba(230, 161, 55, 0.28);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(230, 161, 55, 0.25);
+}
+
+.wcard:hover .wc-slogan-ribbon .kw2 {
+  background: rgba(19, 194, 194, 0.25);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(19, 194, 194, 0.25);
+  transition-delay: 0.08s;
+}
+
+.wcard:hover .wc-slogan-ribbon .kw3 {
+  background: rgba(6, 78, 82, 0.22);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(6, 78, 82, 0.2);
+  transition-delay: 0.16s;
+}
+
+.wc-slogan-ribbon .kw-arrow {
+  color: var(--a);
+  font-size: 0.85rem;
+  display: inline-block;
+  animation: arrowGlide 2s infinite ease-in-out;
+}
+
+@keyframes arrowGlide {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+
+/* 2. Cyber Laser Scanning Line across Project Cards */
+.wc-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-laser {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #13c2c2 30%, #e6a137 70%, transparent);
+  box-shadow: 0 0 14px #13c2c2, 0 0 8px #e6a137;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.3s ease;
+}
+
+.wcard:hover .scan-laser {
+  opacity: 1;
+  animation: laserSweep 2.8s ease-in-out infinite;
+}
+
+@keyframes laserSweep {
+  0% { top: 0%; opacity: 0; }
+  12% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* 3. Live Animated Metric / Status Badges on Cards */
+.wc-stat {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(4, 19, 21, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(19, 194, 194, 0.4);
+  border-radius: 999px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #d1e4e6;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transform: translateY(8px);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.wcard:hover .wc-stat {
+  transform: translateY(0);
+  background: rgba(4, 19, 21, 0.95);
+  border-color: #e6a137;
+  color: #fff;
+  opacity: 1;
+}
+
+.dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #13c2c2;
+  box-shadow: 0 0 8px #13c2c2;
+  display: inline-block;
+  animation: dotPulseAnim 1.6s infinite ease-in-out;
+}
+
+@keyframes dotPulseAnim {
+  0%, 100% { transform: scale(0.85); opacity: 0.5; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+/* 4. Global Kinetic Text & Paragraph Reveal Engine */
+.kt-word {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity, filter;
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.75s ease, filter 0.75s ease;
+  transition-delay: var(--delay, 0ms);
+}
+
+.kt-pre {
+  opacity: 0;
+  transform: translateY(20px) rotateX(15deg);
+  filter: blur(5px);
+}
+
+.kt-in {
+  opacity: 1 !important;
+  transform: translateY(0) rotateX(0deg) !important;
+  filter: blur(0px) !important;
+}
+
+/* 5. Animated Corner Brackets on Interactive Cards */
+.wcard, .acard, .pc-card, .sc {
+  position: relative;
+}
+
+.card-bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(19, 194, 194, 0.4);
+  pointer-events: none;
+  z-index: 6;
+  transition: all 0.3s ease;
+}
+
+.bracket-tl { top: 6px; left: 6px; border-top: 2px solid; border-left: 2px solid; }
+.bracket-tr { top: 6px; right: 6px; border-top: 2px solid; border-right: 2px solid; }
+.bracket-bl { bottom: 6px; left: 6px; border-bottom: 2px solid; border-left: 2px solid; }
+.bracket-br { bottom: 6px; right: 6px; border-bottom: 2px solid; border-right: 2px solid; }
+
+.wcard:hover .card-bracket, .acard:hover .card-bracket, .pc-card:hover .card-bracket, .sc:hover .card-bracket {
+  border-color: #e6a137;
+  width: 14px;
+  height: 14px;
+}
+
+/* 6. High-Tech Service Card Stagger & Glowing Micro-Pills */
+.pills li a {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+.pills li a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(230, 161, 55, 0.25), transparent);
+  transition: left 0.5s ease;
+}
+.pills li a:hover::before {
+  left: 100%;
+}
+
+/* 7. Process Stepper Dynamic Light Rays */
+.pc-card dl dt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pc-card dl dt::before {
+  content: "⚡";
+  font-size: 0.75rem;
+  color: var(--a);
+  animation: zapGlow 2s infinite ease-in-out;
+}
+@keyframes zapGlow {
+  0%, 100% { opacity: 0.4; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* 8. Interactive Live Terminal Badge in Header / Footer */
+.live-terminal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #13c2c2;
+  background: rgba(19, 194, 194, 0.1);
+  border: 1px solid rgba(19, 194, 194, 0.3);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* === MAXIMUM 3D VISIBILITY & CONTINUOUS AUTOMATED KINETIC SUITE === */
+
+/* 1. Global 3D Spatial Transparency & Theme */
+body, html {
+  background-color: #031012 !important;
+  color: #d1ecea !important;
 }
 
 #app {
-  position: relative !important;
-  z-index: 1 !important;
-}
-
-/* Hero section full transparency & white/cyan cyber-teal typography */
-.hero {
+  position: relative;
+  z-index: 1;
   background: transparent !important;
-  min-height: 90vh !important;
 }
 
-.hero h1 {
-  color: #e2f8f8 !important;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7), 0 0 40px rgba(19, 194, 194, 0.25) !important;
+header {
+  background: rgba(3, 16, 18, 0.88) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(19, 194, 194, 0.3) !important;
+}
+
+nav.main a {
+  color: #e0f2f1 !important;
+}
+
+nav.main a:hover, nav.main a[aria-current] {
+  color: var(--a) !important;
+}
+
+.logo img {
+  filter: brightness(1.15);
+}
+
+/* 2. Completely transparent sections revealing the 3D walkthrough rooms */
+.hero, .wk-sec, .sv-sec, .pr-sec, .ar-sec, .cta-a, .sdark, .wdark, .pg-dark, .story {
+  background: transparent !important;
+  position: relative;
+}
+
+.wk-sec, .sv-sec, .pr-sec, .ar-sec {
+  border-top: 1px solid rgba(19, 194, 194, 0.15) !important;
+  border-bottom: 1px solid rgba(19, 194, 194, 0.15) !important;
+}
+
+/* 3. Floating Dark-Glass Monolith Cards */
+.wcard, .acard, .pc-card, .sv-panel, .sc, .card, .pan, .nums li, .how li, .val > div, details {
+  background: rgba(4, 25, 29, 0.78) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(19, 194, 194, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(19, 194, 194, 0.1) !important;
+  color: #d1e4e6 !important;
+}
+
+.wcard:hover, .acard:hover, .pc-card:hover, .sc:hover {
+  border-color: var(--a) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 30px rgba(230, 161, 55, 0.3) !important;
+  background: rgba(5, 32, 37, 0.9) !important;
+}
+
+/* 4. High-Contrast Luminous Typography */
+.hero h1, .hero-in h1 .ln {
+  opacity: 1 !important;
+  background: linear-gradient(135deg, #ffffff 0%, #13c2c2 40%, #e6a137 75%, #ffffff 100%) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: textShimmerContinuous 6s ease-in-out infinite alternate !important;
 }
 
 .hero h1 .dot {
+  -webkit-text-fill-color: #e6a137 !important;
+  -webkit-background-clip: border-box !important;
   color: #e6a137 !important;
 }
 
-.hero .eyebrow {
-  color: #2dd4bf !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.14em !important;
+@keyframes textShimmerContinuous {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
-.hero .hsub {
-  color: #c4dbd9 !important;
-  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.8) !important;
+.big2, .big2 span, .wk-top h3, .sv-head .big2, .sv-text h3, .pr-head h2, .ar-head h2, .sh2 h1, .ph h1, .sd-head h2 {
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
-/* === ROCK-SOLID INLINE POSITIONING FOR 'O' IN 'BIG MOVE.' === */
+.hsub, .lead, .wk-top p, .sv-text p, .pr-head p, .pc-b p, .pc-b dl, .how p, .val p {
+  color: #bce5e3 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.eyebrow {
+  color: #e6a137 !important;
+  font-weight: 700;
+}
+
+.pc-b h3, .pc-card h3 {
+  color: #ffffff !important;
+}
+
+.pc-b .tg {
+  color: #13c2c2 !important;
+}
+
+.pc-b dt {
+  color: #e6a137 !important;
+}
+
+.pc-b dd {
+  color: #cdeae8 !important;
+}
+
+.pc-img {
+  background: rgba(3, 18, 21, 0.9) !important;
+  border-bottom: 1px solid rgba(19, 194, 194, 0.2);
+}
+
+.pc-img svg path, .pc-img svg circle, .pc-img svg rect {
+  stroke: #13c2c2 !important;
+}
+
+.pc-img svg [fill="#064E52"] {
+  fill: #13c2c2 !important;
+}
+
+.sv-media {
+  background: rgba(3, 18, 21, 0.85) !important;
+  border: 1px solid rgba(19, 194, 194, 0.2);
+}
+
+.wc-media {
+  background: rgba(3, 18, 21, 0.9) !important;
+}
+
+.acard .th {
+  background: rgba(3, 18, 21, 0.9) !important;
+}
+
+.fig {
+  background: rgba(3, 18, 21, 0.9) !important;
+  border: 1px solid rgba(19, 194, 194, 0.3);
+}
+
+.sv-tabs button {
+  background: rgba(4, 25, 29, 0.8) !important;
+  color: #d1ecea !important;
+  border: 1px solid rgba(19, 194, 194, 0.4) !important;
+}
+
+.sv-tabs button[aria-selected="true"] {
+  background: #e6a137 !important;
+  color: #041315 !important;
+  border-color: #e6a137 !important;
+  box-shadow: 0 0 16px rgba(230, 161, 55, 0.5) !important;
+}
+
+.sv-text .pills a {
+  background: rgba(4, 25, 29, 0.8) !important;
+  color: #d1ecea !important;
+  border: 1px solid rgba(19, 194, 194, 0.3) !important;
+}
+
+.sv-text .pills a:hover {
+  background: #13c2c2 !important;
+  color: #041315 !important;
+  border-color: #13c2c2 !important;
+}
+
+/* 5. Continuous Automated Kinetic Wave on Selected Work Slogan Ribbons */
+.wc-slogan-ribbon {
+  background: rgba(6, 42, 46, 0.65) !important;
+  border-left: 3px solid #e6a137 !important;
+  border-top: 1px solid rgba(19, 194, 194, 0.2);
+  border-right: 1px solid rgba(19, 194, 194, 0.2);
+  border-bottom: 1px solid rgba(19, 194, 194, 0.2);
+}
+
+.wc-slogan-ribbon .ribbon-text {
+  color: #ffffff !important;
+}
+
+.wc-slogan-ribbon .kw {
+  background: rgba(19, 194, 194, 0.2) !important;
+  color: #fff !important;
+  border: 1px solid rgba(19, 194, 194, 0.4);
+  animation: continuousSloganWave 4.5s infinite ease-in-out;
+}
+
+.wc-slogan-ribbon .kw1 { animation-delay: 0s; }
+.wc-slogan-ribbon .kw2 { animation-delay: 1.4s; }
+.wc-slogan-ribbon .kw3 { animation-delay: 2.8s; }
+
+@keyframes continuousSloganWave {
+  0%, 100% {
+    background: rgba(19, 194, 194, 0.2);
+    color: #d1ecea;
+    transform: translateY(0);
+    border-color: rgba(19, 194, 194, 0.4);
+    box-shadow: none;
+  }
+  30% {
+    background: rgba(230, 161, 55, 0.45);
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.05);
+    border-color: #e6a137;
+    box-shadow: 0 4px 14px rgba(230, 161, 55, 0.4);
+  }
+}
+
+/* 6. Continuous Laser Sweep on Project Cards without waiting for hover */
+.scan-laser {
+  opacity: 1 !important;
+  animation: laserSweepContinuous 3.2s ease-in-out infinite !important;
+}
+
+@keyframes laserSweepContinuous {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* 7. Live Pulse Orbit on hero */
+.orbit .ring {
+  stroke: #13c2c2 !important;
+  stroke-opacity: 0.65 !important;
+}
+
+.orbit .ol {
+  background: rgba(4, 25, 29, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(19, 194, 194, 0.5) !important;
+  box-shadow: 0 0 14px rgba(19, 194, 194, 0.25) !important;
+}
+
+.orbit .ol i {
+  background: #e6a137 !important;
+}
+
+/* === SUBPAGE & DETAIL PAGE COMPLETE PROFESSIONAL HARMONIZATION === */
+
+/* Page Headers (Services, Work, About, Learn, Contact, Case Studies) */
+.ph, .sh2, .sec, .sec.alt, .dk-sec, .story, .csplit, .proj-hero {
+  background: transparent !important;
+  color: #d1ecea !important;
+}
+
+.ph h1, .sh2 h1, .proj-hero h1, .story h2, .cs-form h2 {
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+.ph .lead, .sh2 .lead, .cs-vis .dir {
+  color: #bce5e3 !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.crumb, .crumb a {
+  color: #8fb3b0 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.crumb a:hover {
+  color: var(--a) !important;
+}
+
+/* Service Detail Panels & Layout Columns */
+.pan, .pan.ivo, .two > div, .card, .sdark .q input, .empty {
+  background: rgba(4, 25, 29, 0.82) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(19, 194, 194, 0.35) !important;
+  color: #d1ecea !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+.pan h2, .pan h3, .two h2, .two h3 {
+  color: #ffffff !important;
+}
+
+/* Checklists & Benefit Bullet Points */
+.tick li::before {
+  background: var(--a) !important;
+}
+.tick li::after {
+  border-color: #041315 !important;
+}
+
+/* Numbered Step Lists (.nums) */
+.nums li {
+  background: rgba(4, 25, 29, 0.82) !important;
+  border: 1px solid rgba(19, 194, 194, 0.35) !important;
+  color: #d1ecea !important;
+}
+.nums li::before {
+  color: var(--a) !important;
+}
+.nums li h3 {
+  color: #ffffff !important;
+}
+
+/* Service Catalogue Rows & Cards */
+.svc-row {
+  border-top: 1px solid rgba(19, 194, 194, 0.2) !important;
+  color: #d1ecea !important;
+}
+.svc-row:hover {
+  background: rgba(19, 194, 194, 0.1) !important;
+}
+.svc-row h3 {
+  color: #ffffff !important;
+}
+.svc-row .num {
+  color: #13c2c2 !important;
+  -webkit-text-stroke-color: #13c2c2 !important;
+}
+
+/* Values Grid & Process on About Page */
+.val > div {
+  background: rgba(4, 25, 29, 0.82) !important;
+  border: 1px solid rgba(19, 194, 194, 0.35) !important;
+  border-top: 3px solid var(--a) !important;
+  color: #d1ecea !important;
+}
+.val h3 {
+  color: #ffffff !important;
+}
+
+/* Interactive Accordions / Details */
+details {
+  background: rgba(4, 25, 29, 0.8) !important;
+  border: 1px solid rgba(19, 194, 194, 0.35) !important;
+  color: #d1ecea !important;
+}
+summary {
+  color: #ffffff !important;
+}
+summary:hover {
+  color: var(--a) !important;
+}
+
+/* Form Inputs & Stepper for Contact Page */
+.cs-form input, .cs-form select, .cs-form textarea {
+  background: rgba(3, 18, 21, 0.85) !important;
+  border: 1px solid rgba(19, 194, 194, 0.4) !important;
+  color: #ffffff !important;
+}
+.cs-form input:focus, .cs-form select:focus, .cs-form textarea:focus {
+  border-color: var(--a) !important;
+  box-shadow: 0 0 16px rgba(230, 161, 55, 0.4) !important;
+}
+.stepper li {
+  color: #8fb3b0 !important;
+}
+.stepper li b {
+  border-color: rgba(19, 194, 194, 0.5) !important;
+  color: #d1ecea !important;
+}
+.stepper li.on b, .stepper li.done b {
+  background: var(--a) !important;
+  color: #041315 !important;
+  border-color: var(--a) !important;
+}
+.stepper .ln2 {
+  background: rgba(19, 194, 194, 0.3) !important;
+}
+.stepper .ln2.done {
+  background: var(--a) !important;
+}
+
+/* Case Study Stories & Media Grid */
+.sgal figure {
+  background: rgba(3, 18, 21, 0.9) !important;
+  border: 1px solid rgba(19, 194, 194, 0.3) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* === HERO MOTION PORTAL & PRECISE INLINE BASELINE LOCK === */
 .hero h1 .ln:nth-child(3) {
-  display: inline-flex !important;
-  align-items: baseline !important;
+  display: block !important;
   white-space: nowrap !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  margin-left: clamp(0px, 5%, 70px) !important;
 }
 
 .oimg,
 .o-portal {
   position: relative !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 0.68em !important;
-  height: 0.68em !important;
+  display: inline-block !important;
+  width: 0.65em !important;
+  height: 0.65em !important;
   border-radius: 50% !important;
-  vertical-align: -0.05em !important;
-  margin: 0 0.02em !important;
+  vertical-align: -0.06em !important;
+  margin: 0 0.03em !important;
   overflow: hidden !important;
-  flex-shrink: 0 !important;
   line-height: 1 !important;
   background: #021a1b !important;
   box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.5), 0 0 20px rgba(45, 212, 191, 0.4), 0 6px 24px rgba(0, 0, 0, 0.8) !important;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
   cursor: pointer !important;
+  -webkit-text-fill-color: initial !important;
+  -webkit-background-clip: border-box !important;
 }
 
 .oimg:hover,
@@ -725,3 +1568,4 @@ body {
     box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 0 18px rgba(45, 212, 191, 0.55);
   }
 }
+

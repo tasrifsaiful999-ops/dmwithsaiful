@@ -79,12 +79,19 @@ function initHeroPortal() {
     }
   }
   
+  // Unconditional continuous auto-play on page load without requiring mouse
   start();
+  
   portal.addEventListener('mouseenter', stop);
   portal.addEventListener('mouseleave', start);
   portal.addEventListener('click', () => {
     showNext();
     start();
+  });
+  
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stop();
+    else start();
   });
 }
 
