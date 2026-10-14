@@ -189,3 +189,94 @@ footer{background:#04292b;border-top:4px solid var(--a);color:#b7d3d1;padding:cl
 
 @media(max-width:1200px){.orbit{right:0}}
 .ol{font-size:clamp(.74rem,.82vw,.86rem)}@media(max-width:900px){.orbit .ol,.ol{font-size:.78rem}}
+
+/* === ULTRA-CLEAN SELECTED WORK SHOWCASE OVERRIDES === */
+.wc-media {
+  position: relative !important;
+  overflow: hidden !important;
+  background: #021a1b !important;
+  aspect-ratio: 16/9 !important;
+  border-bottom: 1px solid rgba(45, 212, 191, 0.12) !important;
+}
+.wc-media picture,
+.wc-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  background-color: transparent !important;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.wcard:hover .wc-media img {
+  transform: scale(1.04) !important;
+}
+.wcard {
+  display: flex !important;
+  flex-direction: column !important;
+  border: 1px solid rgba(45, 212, 191, 0.22) !important;
+  border-radius: 16px !important;
+  background: rgba(3, 22, 25, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+}
+.wcard:hover {
+  border-color: #e6a137 !important;
+  transform: translateY(-5px) !important;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6), 0 0 25px rgba(230, 161, 55, 0.2) !important;
+}
+.wc-bar {
+  padding: 14px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(4, 30, 34, 0.6) !important;
+}
+.wc-bar span {
+  font-family: var(--fb, sans-serif) !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+.wc-bar span b {
+  color: #e6a137 !important;
+  transition: transform 0.3s ease !important;
+}
+.wcard:hover .wc-bar span b {
+  transform: translate(2px, -2px) !important;
+}
+.wc-bar small {
+  font-family: var(--fm, monospace) !important;
+  font-size: 0.72rem !important;
+  color: #2dd4bf !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+}
+.wc-info {
+  padding: 16px 18px !important;
+  font-size: 0.88rem !important;
+  line-height: 1.5 !important;
+  color: #9cb8b6 !important;
+  background: rgba(3, 20, 23, 0.95) !important;
+}
+.wc-info b {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+/* Eliminate any scanner line or tag overlays */
+.scan-laser,
+.wc-tag,
+.wc-slogan-ribbon,
+.ev,
+.legend,
+.split-note {
+  display: none !important;
+}
