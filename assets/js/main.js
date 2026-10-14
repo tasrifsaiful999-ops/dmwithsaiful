@@ -58,18 +58,40 @@ function initHeroPortal() {
   const slides = portal.querySelectorAll('.o-slide');
   if (!slides || slides.length === 0) return;
   
+  const labelEl = document.getElementById('hero-portal-label');
+  const captions = [
+    '01 // Meta Ads Scaling Matrix',
+    '02 // Anzara Bridal Couture',
+    '03 // Azran Menswear Video',
+    '04 // Elor Fine Jewellery',
+    '05 // Algorithmic SEO Discovery',
+    '06 // 4K Studio Production Rig'
+  ];
+  
   let current = 0;
   let timer = null;
+  
+  function updateCaption(idx) {
+    if (!labelEl) return;
+    labelEl.style.opacity = '0';
+    labelEl.style.transform = 'translateY(4px)';
+    setTimeout(() => {
+      labelEl.textContent = captions[idx] || '';
+      labelEl.style.opacity = '1';
+      labelEl.style.transform = 'translateY(0)';
+    }, 180);
+  }
   
   function showNext() {
     slides[current].classList.remove('active');
     current = (current + 1) % slides.length;
     slides[current].classList.add('active');
+    updateCaption(current);
   }
   
   function start() {
     if (timer) clearInterval(timer);
-    timer = setInterval(showNext, 2000);
+    timer = setInterval(showNext, 2200);
   }
   
   function stop() {
@@ -81,6 +103,7 @@ function initHeroPortal() {
   
   // Unconditional continuous auto-play on page load without requiring mouse
   start();
+  updateCaption(0);
   
   portal.addEventListener('mouseenter', stop);
   portal.addEventListener('mouseleave', start);
@@ -95,8 +118,64 @@ function initHeroPortal() {
   });
 }
 
-function init(){initHeroPortal();R.classList.add('js');hdr();prog();reveal();menu();svtabs();carousel();orbit();filters();cursor();enquiry();const h=q('header');if(h&&'ResizeObserver' in window){if(window.__ro)window.__ro.disconnect();window.__ro=new ResizeObserver(hdr);window.__ro.observe(h)}}
+function init3DCardTilt() {
+  if (matchMedia('(pointer: coarse)').matches) return;
+  const cards = document.querySelectorAll('.wcard, .pc-card, .acard, .sv-panel');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotY = (x / (rect.width / 2)) * 4.5;
+      const rotX = (-y / (rect.height / 2)) * 4.5;
+      card.style.transform = `perspective(1000px) rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+const AudioFX = (function() {
+  let ctx = null;
+  let enabled = false;
+  function getCtx() {
+    if (!ctx && (window.AudioContext || window.webkitAudioContext)) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+  return {
+    toggle() {
+      enabled = !enabled;
+      if (enabled) getCtx();
+      return enabled;
+    },
+    click() {
+      if (!enabled) return;
+      try {
+        const c = getCtx();
+        if (!c) return;
+        const osc = c.createOscillator();
+        const gain = c.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, c.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(440, c.currentTime + 0.035);
+        gain.gain.setValueAtTime(0.04, c.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + 0.035);
+        osc.connect(gain);
+        gain.connect(c.destination);
+        osc.start();
+        osc.stop(c.currentTime + 0.04);
+      } catch(_) {}
+    }
+  };
+})();
+window.AudioFX = AudioFX;
+
+function init(){initHeroPortal();init3DCardTilt();R.classList.add('js');hdr();prog();reveal();menu();svtabs();carousel();orbit();filters();cursor();enquiry();const h=q('header');if(h&&'ResizeObserver' in window){if(window.__ro)window.__ro.disconnect();window.__ro=new ResizeObserver(hdr);window.__ro.observe(h)}}
 if(!window.__dms){window.__dms=1;let tk=0;addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(()=>{hdr();prog();tk=0})}},{passive:true});addEventListener('resize',hdr);
-document.addEventListener('click',e=>{const b=e.target.closest('[data-confirm]');if(b&&!confirm(b.dataset.confirm))e.preventDefault()})}
+document.addEventListener('click',e=>{if(e.target.closest('button,a,.wcard,.btn'))AudioFX.click();const b=e.target.closest('[data-confirm]');if(b&&!confirm(b.dataset.confirm))e.preventDefault()})}
 window.dmsInit=init;init()})();
 window.__PREVIEW=true;

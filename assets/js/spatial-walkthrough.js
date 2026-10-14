@@ -132,12 +132,29 @@
           <button type="button" data-jump="0.52" title="Sector 3: Matrix">03</button>
           <button type="button" data-jump="0.75" title="Sector 4: Rotunda">04</button>
           <button type="button" data-jump="0.96" title="Sector 5: Skyline">05</button>
+          <button type="button" id="hud-audio-btn" class="hud-audio-pill" title="Toggle audio feedback">FX: <span id="hud-audio-txt">OFF</span></button>
         </div>
       </div>
     `;
     document.body.appendChild(hud);
     hudSectorEl = document.getElementById('hud-sector-text');
     hudCoordsEl = document.getElementById('hud-coords-text');
+
+    // Audio feedback toggle button
+    const audioBtn = hud.querySelector('#hud-audio-btn');
+    if (audioBtn) {
+      audioBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (window.AudioFX) {
+          const on = window.AudioFX.toggle();
+          const txt = document.getElementById('hud-audio-txt');
+          if (txt) txt.textContent = on ? 'ON' : 'OFF';
+          audioBtn.classList.toggle('audio-active', on);
+          if (on) window.AudioFX.click();
+        }
+      });
+    }
 
     // Quick jump pills
     hud.querySelectorAll('[data-jump]').forEach(btn => {
