@@ -1691,3 +1691,164 @@ summary:hover {
   transform-style: preserve-3d;
   will-change: transform;
 }
+
+/* === RICH VISUAL SERVICE CARDS (/services/) === */
+.sc {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  text-align: left !important;
+  padding: 0 !important;
+  background: rgba(4, 25, 29, 0.85) !important;
+  border: 1px solid rgba(19, 194, 194, 0.28) !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  min-height: 420px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease !important;
+  transform-style: preserve-3d !important;
+}
+
+.sc:hover {
+  transform: translateY(-8px) scale(1.015) !important;
+  border-color: var(--a) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(230, 161, 55, 0.28) !important;
+  background: rgba(6, 35, 40, 0.95) !important;
+  color: inherit !important;
+}
+
+.sc-media {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  overflow: hidden !important;
+  background: #021417 !important;
+}
+
+.sc-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: block !important;
+}
+
+.sc:hover .sc-media img {
+  transform: scale(1.08) !important;
+}
+
+.sc-badge {
+  position: absolute !important;
+  top: 12px !important;
+  left: 12px !important;
+  background: rgba(4, 19, 21, 0.88) !important;
+  border: 1px solid rgba(230, 161, 55, 0.6) !important;
+  color: #ffd085 !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", monospace !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 4px 10px !important;
+  border-radius: 999px !important;
+  backdrop-filter: blur(8px) !important;
+  z-index: 2 !important;
+}
+
+.sc-body {
+  padding: 22px 24px 26px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.sc-hdr {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-bottom: 12px !important;
+}
+
+.sc .ic2 {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  margin-bottom: 0 !important;
+  border-radius: 10px !important;
+  background: rgba(230, 161, 55, 0.18) !important;
+  border: 1px solid rgba(230, 161, 55, 0.45) !important;
+  display: grid !important;
+  place-items: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.sc:hover .ic2 {
+  background: var(--a) !important;
+  border-color: var(--a) !important;
+}
+
+.sc .ic2 svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke: #ffd085 !important;
+}
+
+.sc:hover .ic2 svg {
+  stroke: #041315 !important;
+}
+
+.sc h3 {
+  font-family: var(--fd) !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+  transition: color 0.25s !important;
+}
+
+.sc:hover h3 {
+  color: var(--a) !important;
+}
+
+.sc p {
+  color: #a4c9c7 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.55 !important;
+  margin: 0 0 18px !important;
+  flex: 1 !important;
+}
+
+.sc-link {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", monospace !important;
+  font-size: 0.74rem !important;
+  letter-spacing: 0.08em !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  color: #13c2c2 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  transition: gap 0.25s ease, color 0.25s ease !important;
+}
+
+.sc:hover .sc-link {
+  color: #ffd085 !important;
+  gap: 10px !important;
+}
+
+.sc:hover .scan-laser {
+  opacity: 1 !important;
+  animation: laserSweep 2.5s ease-in-out infinite !important;
+}
+
+/* Founder Official Banner Card on /about/ */
+.founder-cover-card {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease !important;
+}
+
+.founder-cover-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(19, 194, 194, 0.3) !important;
+}
