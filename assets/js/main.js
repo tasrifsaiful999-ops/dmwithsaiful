@@ -120,18 +120,24 @@ function initHeroPortal() {
 
 function init3DCardTilt() {
   if (matchMedia('(pointer: coarse)').matches) return;
-  const cards = document.querySelectorAll('.wcard, .pc-card, .acard, .sv-panel');
+  const cards = document.querySelectorAll('.wcard, .pc-card, .acard, .sv-panel, .sc');
   cards.forEach(card => {
     card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      const rotY = (x / (rect.width / 2)) * 4.5;
-      const rotX = (-y / (rect.height / 2)) * 4.5;
-      card.style.transform = `perspective(1000px) rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) translateY(-6px)`;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const midX = x - rect.width / 2;
+      const midY = y - rect.height / 2;
+      const rotY = (midX / (rect.width / 2)) * 3.8;
+      const rotX = (-midY / (rect.height / 2)) * 3.8;
+      card.style.setProperty('--mx', `${x}px`);
+      card.style.setProperty('--my', `${y}px`);
+      card.style.transform = `perspective(1000px) rotateY(${rotY.toFixed(2)}deg) rotateX(${rotX.toFixed(2)}deg) translateY(-5px)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
+      card.style.removeProperty('--mx');
+      card.style.removeProperty('--my');
     });
   });
 }
