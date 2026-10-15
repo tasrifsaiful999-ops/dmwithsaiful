@@ -2052,3 +2052,18 @@ html, body {
 img, picture {
   max-width: 100%;
 }
+
+/* === CLEAN EXECUTIVE UI: REMOVE SCI-FI HUD & SECTOR BADGES === */
+.spatial-hud,
+.spatial-canvas,
+.sector-badge,
+.hero-status-row,
+#spatial-walkthrough-canvas,
+.radar-pulse,
+.portal-badge {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
