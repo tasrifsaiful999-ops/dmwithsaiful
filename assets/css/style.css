@@ -139,7 +139,7 @@ nav.main a:hover::after,nav.main a:focus-visible::after,nav.main a[aria-current]
 footer{background:#04292b;border-top:4px solid var(--a);color:#b7d3d1;padding:clamp(44px,6vw,80px) 0 22px}footer a{color:#e8f3f2;text-decoration:none}footer a:hover{color:var(--a);text-decoration:underline}footer h3{font-family:var(--fd);color:#fff;font-size:1.15rem;margin:0 0 1em}footer ul{list-style:none;margin:0;padding:0}footer li{margin:.55em 0}
 .fgrid{display:grid;grid-template-columns:1.3fr 1.1fr .9fr 1.3fr;gap:clamp(24px,4vw,56px)}.fl{display:inline-block;background:#fff;border-radius:12px;padding:10px 16px}.fl img{height:48px;width:auto}.fgrid p{max-width:24em}.fdrop{margin-top:1.4em}.fdrop b, .fdrop .fdrop-label{display:block;margin-bottom:0.35em;color:#fff;font-weight:600}.fdrop a{display:inline-block;word-break:break-all}.fsoc{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.4em}.fsoc a{width:42px;height:42px;border-radius:50%;background:#ffffff1a;display:grid;place-items:center;font-size:.8rem;font-weight:700}
 .fine{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px 24px;border-top:1px solid #ffffff24;margin-top:clamp(28px,4vw,48px);padding-top:20px;font-size:.9rem}.fine nav a{margin-left:18px}
-[hidden]{display:none!important}.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[hidden]{display:none!important}.vh{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important}
 @keyframes lift{from{transform:translateY(.28em)}}
 @media(prefers-reduced-motion:no-preference){.hero h1 .ln{animation:lift .9s var(--ease) backwards}.hero h1 .ln:nth-child(2){animation-delay:.12s}.hero h1 .ln:nth-child(3){animation-delay:.24s}.hero .eyebrow{animation:fade .6s var(--ease) backwards}.hero .hsub{animation:rise .8s var(--ease) .42s backwards}.hero .bt{animation:rise .8s var(--ease) .52s backwards}.orbit{animation:fade 1.2s var(--ease) .3s backwards}.blob{animation:drift 18s ease-in-out infinite alternate}.hero.off .blob{animation-play-state:paused}}
 @keyframes drift{to{transform:translate(2.5vw,1.5vw) scale(1.05)}}
@@ -1926,20 +1926,29 @@ summary:hover {
   margin-left: 0.02em;
 }
 
-/* O-Portal: perfectly centered, organic tight letter spacing for 'move' */
+/* Word 'move' cohesive inline wrapper */
+.word-move {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  vertical-align: baseline !important;
+  letter-spacing: -0.015em !important;
+  font-feature-settings: "kern" 1 !important;
+}
+
+/* O-Portal: scaled to font lowercase x-height with zero awkward gaps */
 .oimg,
 .o-portal {
   position: relative !important;
   display: inline-block !important;
-  width: 0.62em !important;
-  height: 0.62em !important;
+  width: 0.52em !important;
+  height: 0.52em !important;
   border-radius: 50% !important;
-  vertical-align: -0.02em !important;
-  margin: 0 0.03em !important; /* organic letter spacing so 'move' stays cohesive */
+  vertical-align: -0.04em !important;
+  margin: 0 0.015em !important;
   overflow: hidden !important;
   line-height: 1 !important;
   background: #021a1b !important;
-  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.6), 0 0 20px rgba(45, 212, 191, 0.4), 0 6px 20px rgba(0, 0, 0, 0.8) !important;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.6), 0 0 16px rgba(45, 212, 191, 0.4), 0 4px 16px rgba(0, 0, 0, 0.8) !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease !important;
   cursor: pointer !important;
   -webkit-text-fill-color: initial !important;
