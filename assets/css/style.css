@@ -2085,3 +2085,116 @@ img, picture {
   height: 100% !important;
 }
 
+/* === COMPACT, BALANCED LUXURY SELECTED WORK GRID & COMPACT SIZING === */
+.wk-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(16px, 1.8vw, 24px) !important;
+  align-items: stretch !important;
+}
+
+.wcard:first-child {
+  grid-column: auto !important;
+}
+
+.wcard {
+  border-radius: 16px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  background: rgba(4, 25, 29, 0.85) !important;
+  border: 1px solid rgba(19, 194, 194, 0.28) !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+}
+
+.wcard:hover {
+  transform: translateY(-6px) !important;
+  border-color: #e6a137 !important;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 25px rgba(230, 161, 55, 0.22) !important;
+}
+
+.wc-bar {
+  padding: 14px 18px 10px !important;
+  font-size: 0.86rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}
+
+.wc-bar span {
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  color: #ffffff !important;
+}
+
+.wc-bar small {
+  font-size: 0.74rem !important;
+  color: #8fb3b0 !important;
+  font-weight: 500 !important;
+}
+
+.wc-media {
+  aspect-ratio: 16 / 10 !important;
+  height: 200px !important;
+  max-height: 220px !important;
+  margin: 0 14px !important;
+  border-radius: 10px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: #021214 !important;
+}
+
+.wc-media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.wcard:hover .wc-media img {
+  transform: scale(1.05) !important;
+}
+
+.wc-stat {
+  position: absolute !important;
+  bottom: 10px !important;
+  left: 10px !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  padding: 4px 10px !important;
+  background: rgba(3, 18, 21, 0.88) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(19, 194, 194, 0.4) !important;
+  border-radius: 999px !important;
+  color: #e0f2f1 !important;
+  z-index: 2 !important;
+}
+
+.wc-info {
+  padding: 14px 18px 18px !important;
+  font-size: 0.86rem !important;
+  line-height: 1.45 !important;
+  color: #a9c6c4 !important;
+  flex-grow: 1 !important;
+}
+
+.wc-info b {
+  color: #ffffff !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+  font-size: 0.92rem !important;
+}
+
+@media (max-width: 900px) {
+  .wk-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .wc-media {
+    height: 230px !important;
+    max-height: 240px !important;
+  }
+}
+
+
