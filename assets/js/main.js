@@ -124,29 +124,48 @@ function enquiry(){
 
     // Pre-fill WhatsApp message
     const waText = encodeURIComponent(
-      `Hello Saiful, I just submitted a project enquiry on dmwithsaiful.com:
-` +
-      `*Name:* ${leadData.name}
-` +
-      `*Business:* ${leadData.biz || 'N/A'}
-` +
-      `*Service:* ${leadData.service || 'General'}
-` +
-      `*Brief:* ${leadData.brief}`
+      `Hello Saiful, I am submitting a project enquiry from dmwithsaiful.com:\n\n` +
+      `*Name:* ${leadData.name}\n` +
+      `*Business:* ${leadData.biz || 'N/A'}\n` +
+      `*Service:* ${leadData.service || 'General'}\n` +
+      `*Timeline:* ${leadData.timeline || 'Flexible'}\n` +
+      `*Budget:* ${leadData.budget || 'Open'}\n\n` +
+      `*Project Brief:*\n${leadData.brief}`
     );
     const waUrl = `https://wa.me/8801533536004?text=${waText}`;
+
+    // Pre-fill direct email message
+    const mailSubject = encodeURIComponent(`Project Enquiry: ${leadData.name} — ${leadData.service || 'Growth Project'}`);
+    const mailBody = encodeURIComponent(
+      `Hello Saiful,\n\nI would like to discuss a digital marketing project with DM with SAIFUL:\n\n` +
+      `Name: ${leadData.name}\n` +
+      `Business: ${leadData.biz || 'N/A'}\n` +
+      `Email: ${leadData.email}\n` +
+      `Phone/WhatsApp: ${leadData.phone || 'N/A'}\n` +
+      `Service: ${leadData.service || 'General'}\n` +
+      `Timeline: ${leadData.timeline || 'Flexible'}\n` +
+      `Budget: ${leadData.budget || 'Open'}\n\n` +
+      `Project Brief:\n${leadData.brief}\n`
+    );
+    const mailUrl = `mailto:digitalmarketingwithsaiful@gmail.com?subject=${mailSubject}&body=${mailBody}`;
 
     // Hide form & steps
     f.hidden = true;
     qa('.stepper', f.closest('.cs-form')).forEach(x => x.hidden = true);
 
     note(
-      'Thank you! Your project enquiry has been received.',
-      `<p style="margin:0 0 16px;color:#c4dbd9">Your brief has been safely recorded. Saiful Islam Mollah will review your requirements and respond promptly.</p>
-       <p style="margin:0 0 18px;color:#ffd085"><b>Want an immediate response?</b> Start a WhatsApp conversation directly with your details already attached:</p>
-       <div style="display:flex;gap:12px;flex-wrap:wrap">
-         <a class="btn" href="${waUrl}" target="_blank" rel="noopener">Continue on WhatsApp <span class="arw" aria-hidden="true">→</span></a>
-         <a class="btn o" href="/">Return to Home</a>
+      'Enquiry Compiled Successfully',
+      `<p style="margin:0 0 14px;color:#c4dbd9">Your project brief has been formatted and saved locally on this device.</p>
+       <div style="background:rgba(230,161,55,0.08);border:1px solid rgba(230,161,55,0.3);border-radius:8px;padding:14px 16px;margin:0 0 20px">
+         <p style="margin:0 0 12px;color:#ffd085;font-size:0.92rem"><b>Direct Dispatch Required:</b> To ensure Saiful receives your brief immediately with zero server lag, please choose your preferred transmission method below:</p>
+         <div style="display:flex;gap:12px;flex-wrap:wrap">
+           <a class="btn" href="${waUrl}" target="_blank" rel="noopener">Send via WhatsApp (+8801533536004) <span class="arw" aria-hidden="true">→</span></a>
+           <a class="btn o" href="${mailUrl}">Send via Email</a>
+         </div>
+       </div>
+       <p style="margin:0 0 16px;font-size:0.8rem;color:#8fb3b0;line-height:1.45"><i>Architecture Disclosure: This website is deployed on a static edge network without a centralized remote server database. Direct dispatch via WhatsApp or Email guarantees immediate receipt by the founder.</i></p>
+       <div>
+         <a class="btn o" style="font-size:0.85rem;padding:6px 14px" href="/">Return to Home</a>
        </div>`
     );
   });

@@ -3,9 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CMS & Lead Inbox — Digital Marketing with SAIFUL</title>
-  <meta name="description" content="Administrative CMS and lead management dashboard for Digital Marketing with SAIFUL.">
+  <title>Owner Workspace & Lead Inbox — Digital Marketing with SAIFUL</title>
+  <meta name="description" content="Local device workspace and enquiry manager for Digital Marketing with SAIFUL.">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://dmwithsaiful.com/admin/">
+  <meta property="og:title" content="Owner Workspace — Digital Marketing with SAIFUL">
+  <meta property="og:description" content="Local device workspace and enquiry manager for Digital Marketing with SAIFUL.">
+  <meta property="og:url" content="https://dmwithsaiful.com/admin/">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="/assets/css/style.css">
   <style>
     .admin-dashboard {
@@ -139,14 +144,19 @@
   <div class="w">
     <div class="admin-header-row">
       <div>
-        <div class="sector-badge" style="margin-bottom:12px"><i></i> Agency CMS &amp; Lead Command</div>
+        <div class="sector-badge" style="margin-bottom:12px"><i></i> Agency Workspace &amp; Lead Command</div>
         <h1>Owner Control Suite</h1>
         <p style="margin:4px 0 0;color:#8fb3b0">Saiful Islam Mollah · Digital Marketing Specialist</p>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn sm" href="/contact/" target="_blank">Test Contact Form ↗</a>
-        <button id="logout-btn" class="btn sm o" type="button">Log Out</button>
+        <button id="logout-btn" class="btn sm o" type="button">Exit Workspace</button>
       </div>
+    </div>
+
+    <div style="margin-bottom:28px;padding:16px 20px;background:rgba(230,161,55,0.08);border:1px solid rgba(230,161,55,0.25);border-left:4px solid #e6a137;border-radius:8px;font-size:0.86rem;color:#ffd085;line-height:1.5">
+      <b>Architecture &amp; Data Security Disclosure:</b><br>
+      This website operates on a static JAMstack architecture without a centralized remote server database. Leads shown below are stored locally in your current browser's <code style="background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:4px;color:#fff">localStorage</code>. Client-side authentication serves as a local interface gate and does not replace server-side token encryption. Cross-device syncing and automated email notifications are not active on static hosting; all client inquiries are transmitted directly via verified WhatsApp and Email dispatches.
     </div>
 
     <div class="admin-stat-grid">
@@ -163,14 +173,17 @@
         <div class="val">5</div>
       </div>
       <div class="admin-stat-card">
-        <small>System Status</small>
-        <div class="val" style="font-size:1.4rem;color:#13c2c2">● Operational</div>
+        <small>Hosting Architecture</small>
+        <div class="val" style="font-size:1.15rem;color:#13c2c2">Static Edge (No Remote DB)</div>
       </div>
     </div>
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
-      <h2 style="color:#fff;margin:0;font-size:1.5rem">Recent Client Submissions</h2>
-      <button id="clear-leads-btn" class="btn sm o" style="font-size:0.8rem;min-height:36px;padding:6px 14px" type="button">Clear Local History</button>
+      <h2 style="color:#fff;margin:0;font-size:1.5rem">Recent Client Submissions (Local Device)</h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="export-leads-btn" class="btn sm" style="font-size:0.8rem;min-height:36px;padding:6px 14px" type="button">Export Leads (JSON)</button>
+        <button id="clear-leads-btn" class="btn sm o" style="font-size:0.8rem;min-height:36px;padding:6px 14px" type="button">Clear Local History</button>
+      </div>
     </div>
 
     <div id="enquiries-container" class="enquiry-list">
@@ -258,6 +271,17 @@ function loadEnquiries() {
     container.appendChild(card);
   });
 }
+
+document.getElementById('export-leads-btn').addEventListener('click', function() {
+  const enquiries = localStorage.getItem('dms_enquiries') || '[]';
+  const blob = new Blob([enquiries], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `dmwithsaiful-leads-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+});
 
 document.getElementById('clear-leads-btn').addEventListener('click', function() {
   if (confirm('Clear local lead history from this browser?')) {
