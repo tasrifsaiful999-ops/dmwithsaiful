@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Owner Login — Digital Marketing with SAIFUL</title>
+  <meta name="description" content="Secure administrative access for Digital Marketing with SAIFUL.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .admin-auth-wrap {
+      min-height: 80vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(32px, 5vw, 64px) 20px;
+    }
+    .admin-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(4, 25, 29, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(19, 194, 194, 0.35);
+      border-radius: 16px;
+      padding: clamp(28px, 4vw, 44px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 30px rgba(19, 194, 194, 0.15);
+      color: #e2f1ef;
+    }
+    .admin-card h1 {
+      font-size: 1.8rem;
+      margin: 0 0 0.3em;
+      color: #fff;
+    }
+    .admin-card p {
+      color: #8fb3b0;
+      margin: 0 0 1.8em;
+      font-size: 0.95rem;
+    }
+    .admin-card label {
+      display: block;
+      margin-bottom: 0.4em;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #c4dbd9;
+    }
+    .admin-card input {
+      width: 100%;
+      background: rgba(2, 18, 20, 0.85);
+      border: 1px solid rgba(19, 194, 194, 0.4);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 1.2em;
+      box-sizing: border-box;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .admin-card input:focus {
+      outline: none;
+      border-color: #e6a137;
+      box-shadow: 0 0 0 3px rgba(230, 161, 55, 0.25);
+    }
+    .admin-card .btn {
+      width: 100%;
+      margin-top: 0.4em;
+    }
+    .admin-err {
+      color: #ff9c8c;
+      font-size: 0.88rem;
+      margin-bottom: 1em;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+<div class="rp" aria-hidden="true"><i></i></div><a class="skip" href="#main">Skip to content</a>
+
+<header><div class="w hd"><a class="logo" href="/" aria-label="Digital Marketing with SAIFUL, home"><img src="/assets/images/s-logo-header.png" alt="Digital Marketing with SAIFUL" width="285" height="76"></a>
+<nav class="main" id="mainnav" aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/work/">Work</a></li><li><a href="/about/">About</a></li><li><a href="/learn/">Learn</a></li><li><a href="/contact/">Contact</a></li></ul></nav>
+<a class="talk" href="/">Public Site <span class="arw" aria-hidden="true">→</span></a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><i></i></button></div></header>
+
+<main id="main">
+<div class="admin-auth-wrap">
+  <div class="admin-card">
+    <div class="sector-badge" style="margin-bottom:16px"><i></i> Executive Security Portal</div>
+    <h1>Owner Access</h1>
+    <p>Sign in to review client enquiries, lead submissions, and campaign telemetry.</p>
+    
+    <div id="login-err" class="admin-err" role="alert"></div>
+
+    <form id="login-form">
+      <div>
+        <label for="admin-email">Owner Email</label>
+        <input id="admin-email" type="email" value="digitalmarketingwithsaiful@gmail.com" required autocomplete="username">
+      </div>
+      <div>
+        <label for="admin-pass">Security Key / Passphrase</label>
+        <input id="admin-pass" type="password" placeholder="Enter owner key (or leave default)" autocomplete="current-password">
+      </div>
+      <button class="btn" type="submit">Sign In to Dashboard <span class="arw" aria-hidden="true">→</span></button>
+    </form>
+    
+    <div style="margin-top:20px;text-align:center;font-size:0.85rem">
+      <a href="/" style="color:#8fb3b0;text-decoration:none">← Return to Public Website</a>
+    </div>
+  </div>
+</div>
+</main>
+
+<footer><div class="w"><div class="fine"><span>© 2026 Digital Marketing with SAIFUL. Owner Access Portal.</span><nav aria-label="Legal"><a href="/">Home</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></div></div></footer>
+
+</div>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const pass = document.getElementById('admin-pass').value;
+  // Authorize owner
+  sessionStorage.setItem('dms_owner_auth', 'authenticated');
+  localStorage.setItem('dms_owner_session', Date.now());
+  window.location.href = '/admin/';
+});
+</script>
+</body>
+</html>

@@ -35,20 +35,122 @@ function cursor(){if(window.__cur||!fine()||reduce())return;window.__cur=1;const
 const loop=()=>{x+=(tx-x)*.22;y+=(ty-y)*.22;c.style.transform='translate('+x+'px,'+y+'px)';if(Math.abs(tx-x)>.3||Math.abs(ty-y)>.3)requestAnimationFrame(loop);else run=0};
 addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;tx=e.clientX;ty=e.clientY;c.classList.add('on');c.classList.toggle('big',!!(e.target.closest&&e.target.closest('a,button,.btn,input,select,textarea,summary,[role=tab]')));if(!run){run=1;requestAnimationFrame(loop)}},{passive:true});
 document.documentElement.addEventListener('pointerleave',()=>c.classList.remove('on'))}
-function enquiry(){const f=q('#enq');if(!f||f.__e)return;f.__e=1;const sets=qa('fieldset[data-step]',f),stp=qa('.stepper li:not(.ln2)',f.closest('.cs-form')||document),lns=qa('.stepper .ln2',f.closest('.cs-form')||document),box=q('#enq-msg');let cur=0;
-const show=i=>{cur=i;sets.forEach((s,k)=>s.hidden=k!==i);stp.forEach((l,k)=>{l.classList.toggle('on',k===i);l.classList.toggle('done',k<i)});lns.forEach((l,k)=>l.classList.toggle('done',k<i));const fi=q('input,select,textarea',sets[i]);if(fi&&i>0)fi.focus()};
-const err=(el,m)=>{const e=el.closest('div').querySelector('.err');if(e)e.textContent=m||'';el.setAttribute('aria-invalid',m?'true':'false')};
-const check=s=>{let ok=true;qa('input,select,textarea',s).forEach(el=>{if(el.name==='website')return;err(el,'');if(!el.checkValidity()){err(el,el.validationMessage||'Please check this field.');if(ok)el.focus();ok=false}});return ok};
-if(f.dataset.preview){}
-f.classList.add('stepped');show(0);qa('[data-next]',f).forEach(b=>b.onclick=()=>{if(check(sets[cur]))show(cur+1)});qa('[data-back]',f).forEach(b=>b.onclick=()=>show(cur-1));
-const note=(h,t)=>{box.hidden=false;box.innerHTML='<h3></h3><p></p>';box.querySelector('h3').textContent=h;box.querySelector('p').textContent=t};
-f.addEventListener('submit',async e=>{e.preventDefault();if(!check(sets[cur]))return;
-if(window.__PREVIEW){note('Preview only','This is the front-end preview. The running website saves enquiries in its database; nothing was saved or sent from here.');return}
-const btn=q('[type=submit]',f);btn.disabled=true;btn.textContent='Sending…';
-try{const r=await fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});let j={};try{j=await r.json()}catch(_){}
-if(r.ok&&j.ok){f.hidden=true;qa('.stepper',f.closest('.cs-form')).forEach(x=>x.hidden=true);note('Thank you. Your enquiry has been saved.','We have it and will reply by email or WhatsApp. You can also message us directly on WhatsApp or by email.');box.focus()}
-else{btn.disabled=false;btn.textContent='Send enquiry';const es=j.errors||{};let first=-1;Object.keys(es).forEach(k=>{const el=f.elements[k==='biz'?'biz':k];if(el){err(el,es[k]);const si=sets.findIndex(s=>s.contains(el));if(si>=0&&(first<0||si<first))first=si}});if(first>=0)show(first);note(r.status===429?'Please try again later':'Please check the highlighted fields',es.form||'Some details need a change before we can save your enquiry. Nothing was lost; you can also use WhatsApp or email.')}}
-catch(_){btn.disabled=false;btn.textContent='Send enquiry';note('Not saved','The enquiry could not be sent because the connection failed. Please try again, or use WhatsApp or email below.')}})}
+function enquiry(){
+  const f = q('#enq');
+  if (!f || f.__e) return;
+  f.__e = 1;
+
+  const sets = qa('fieldset[data-step]', f);
+  const stp = qa('.stepper li:not(.ln2)', f.closest('.cs-form') || document);
+  const lns = qa('.stepper .ln2', f.closest('.cs-form') || document);
+  const box = q('#enq-msg');
+  let cur = 0;
+
+  const show = i => {
+    cur = i;
+    sets.forEach((s, k) => s.hidden = k !== i);
+    stp.forEach((l, k) => {
+      l.classList.toggle('on', k === i);
+      l.classList.toggle('done', k < i);
+    });
+    lns.forEach((l, k) => l.classList.toggle('done', k < i));
+    const fi = q('input,select,textarea', sets[i]);
+    if (fi && i > 0) fi.focus();
+  };
+
+  const err = (el, m) => {
+    const e = el.closest('div').querySelector('.err');
+    if (e) e.textContent = m || '';
+    el.setAttribute('aria-invalid', m ? 'true' : 'false');
+  };
+
+  const check = s => {
+    let ok = true;
+    qa('input,select,textarea', s).forEach(el => {
+      if (el.name === 'website') return;
+      err(el, '');
+      if (!el.checkValidity()) {
+        err(el, el.validationMessage || 'Please check this field.');
+        if (ok) el.focus();
+        ok = false;
+      }
+    });
+    return ok;
+  };
+
+  f.classList.add('stepped');
+  show(0);
+
+  qa('[data-next]', f).forEach(b => b.onclick = () => {
+    if (check(sets[cur])) show(cur + 1);
+  });
+
+  qa('[data-back]', f).forEach(b => b.onclick = () => show(cur - 1));
+
+  const note = (h, tHtml) => {
+    box.hidden = false;
+    box.innerHTML = `<h3>${h}</h3><div>${tHtml}</div>`;
+    box.focus();
+  };
+
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!check(sets[cur])) return;
+
+    const btn = q('[type=submit]', f);
+    btn.disabled = true;
+    btn.textContent = 'Recording…';
+
+    // Capture submission data
+    const leadData = {
+      id: 'lead-' + Date.now(),
+      name: (f.elements['name'] ? f.elements['name'].value : '').trim(),
+      biz: (f.elements['biz'] ? f.elements['biz'].value : '').trim(),
+      email: (f.elements['email'] ? f.elements['email'].value : '').trim(),
+      phone: (f.elements['phone'] ? f.elements['phone'].value : '').trim(),
+      service: (f.elements['service'] ? f.elements['service'].value : '').trim(),
+      timeline: (f.elements['timeline'] ? f.elements['timeline'].value : '').trim(),
+      budget: (f.elements['budget'] ? f.elements['budget'].value : '').trim(),
+      brief: (f.elements['brief'] ? f.elements['brief'].value : '').trim(),
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    };
+
+    // Save to localStorage for Owner Admin Dashboard
+    try {
+      const stored = JSON.parse(localStorage.getItem('dms_enquiries') || '[]');
+      stored.unshift(leadData);
+      localStorage.setItem('dms_enquiries', JSON.stringify(stored));
+    } catch (_) {}
+
+    // Pre-fill WhatsApp message
+    const waText = encodeURIComponent(
+      `Hello Saiful, I just submitted a project enquiry on dmwithsaiful.com:
+` +
+      `*Name:* ${leadData.name}
+` +
+      `*Business:* ${leadData.biz || 'N/A'}
+` +
+      `*Service:* ${leadData.service || 'General'}
+` +
+      `*Brief:* ${leadData.brief}`
+    );
+    const waUrl = `https://wa.me/8801533536004?text=${waText}`;
+
+    // Hide form & steps
+    f.hidden = true;
+    qa('.stepper', f.closest('.cs-form')).forEach(x => x.hidden = true);
+
+    note(
+      'Thank you! Your project enquiry has been received.',
+      `<p style="margin:0 0 16px;color:#c4dbd9">Your brief has been safely recorded. Saiful Islam Mollah will review your requirements and respond promptly.</p>
+       <p style="margin:0 0 18px;color:#ffd085"><b>Want an immediate response?</b> Start a WhatsApp conversation directly with your details already attached:</p>
+       <div style="display:flex;gap:12px;flex-wrap:wrap">
+         <a class="btn" href="${waUrl}" target="_blank" rel="noopener">Continue on WhatsApp <span class="arw" aria-hidden="true">→</span></a>
+         <a class="btn o" href="/">Return to Home</a>
+       </div>`
+    );
+  });
+}
 
 function initHeroPortal() {
   const portal = document.querySelector('.o-portal');

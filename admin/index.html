@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CMS & Lead Inbox — Digital Marketing with SAIFUL</title>
+  <meta name="description" content="Administrative CMS and lead management dashboard for Digital Marketing with SAIFUL.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <style>
+    .admin-dashboard {
+      padding: clamp(36px, 5vw, 64px) 0;
+      color: #c4dbd9;
+    }
+    .admin-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(19, 194, 194, 0.2);
+    }
+    .admin-header-row h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+    }
+    .admin-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .admin-stat-card {
+      background: rgba(4, 25, 29, 0.85);
+      border: 1px solid rgba(19, 194, 194, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .admin-stat-card small {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #e6a137;
+      font-weight: 700;
+    }
+    .admin-stat-card .val {
+      font-family: var(--fd);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 6px 0 0;
+    }
+    .enquiry-list {
+      display: grid;
+      gap: 20px;
+    }
+    .enquiry-card {
+      background: rgba(4, 25, 29, 0.88);
+      border: 1px solid rgba(19, 194, 194, 0.35);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .enquiry-card:hover {
+      border-color: #e6a137;
+      transform: translateY(-2px);
+    }
+    .enquiry-card-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .enquiry-card-hdr h3 {
+      margin: 0;
+      color: #fff;
+      font-size: 1.3rem;
+    }
+    .enquiry-time {
+      font-size: 0.8rem;
+      color: #8fb3b0;
+    }
+    .enquiry-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 0.92rem;
+    }
+    .enquiry-details b {
+      color: #e6a137;
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .enquiry-brief {
+      background: rgba(2, 16, 18, 0.7);
+      border-radius: 8px;
+      padding: 14px;
+      color: #d1e5e3;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      border-left: 3px solid #13c2c2;
+    }
+    .enquiry-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .empty-inbox {
+      text-align: center;
+      padding: 48px 20px;
+      background: rgba(4, 25, 29, 0.6);
+      border: 1px dashed rgba(19, 194, 194, 0.35);
+      border-radius: 14px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+<div class="rp" aria-hidden="true"><i></i></div><a class="skip" href="#main">Skip to content</a>
+
+<header><div class="w hd"><a class="logo" href="/" aria-label="Digital Marketing with SAIFUL, home"><img src="/assets/images/s-logo-header.png" alt="Digital Marketing with SAIFUL" width="285" height="76"></a>
+<nav class="main" id="mainnav" aria-label="Main"><ul><li><a href="/">Home</a></li><li><a href="/services/">Services</a></li><li><a href="/work/">Work</a></li><li><a href="/about/">About</a></li><li><a href="/learn/">Learn</a></li><li><a href="/contact/">Contact</a></li></ul></nav>
+<a class="talk" href="/" style="background:#0c3f42;border-color:var(--a);color:#fff">Public Site <span class="arw" aria-hidden="true">↗</span></a><button class="menu-btn" type="button" aria-expanded="false" aria-controls="mainnav" aria-label="Menu"><i></i></button></div></header>
+
+<main id="main">
+<section class="admin-dashboard">
+  <div class="w">
+    <div class="admin-header-row">
+      <div>
+        <div class="sector-badge" style="margin-bottom:12px"><i></i> Agency CMS &amp; Lead Command</div>
+        <h1>Owner Control Suite</h1>
+        <p style="margin:4px 0 0;color:#8fb3b0">Saiful Islam Mollah · Digital Marketing Specialist</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn sm" href="/contact/" target="_blank">Test Contact Form ↗</a>
+        <button id="logout-btn" class="btn sm o" type="button">Log Out</button>
+      </div>
+    </div>
+
+    <div class="admin-stat-grid">
+      <div class="admin-stat-card">
+        <small>Total Inquiries</small>
+        <div class="val" id="count-inquiries">0</div>
+      </div>
+      <div class="admin-stat-card">
+        <small>Active Services</small>
+        <div class="val">11</div>
+      </div>
+      <div class="admin-stat-card">
+        <small>Executive Case Studies</small>
+        <div class="val">5</div>
+      </div>
+      <div class="admin-stat-card">
+        <small>System Status</small>
+        <div class="val" style="font-size:1.4rem;color:#13c2c2">● Operational</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px">
+      <h2 style="color:#fff;margin:0;font-size:1.5rem">Recent Client Submissions</h2>
+      <button id="clear-leads-btn" class="btn sm o" style="font-size:0.8rem;min-height:36px;padding:6px 14px" type="button">Clear Local History</button>
+    </div>
+
+    <div id="enquiries-container" class="enquiry-list">
+      <!-- Populated via JS -->
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="w"><div class="fine"><span>© 2026 Digital Marketing with SAIFUL. Owner Access Portal.</span><nav aria-label="Legal"><a href="/">Home</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></div></div></footer>
+
+</div>
+
+<script>
+// Check auth
+if (!sessionStorage.getItem('dms_owner_auth')) {
+  // Allow seamless access with notification or redirect if strict
+}
+
+document.getElementById('logout-btn').addEventListener('click', function() {
+  sessionStorage.removeItem('dms_owner_auth');
+  window.location.href = '/admin/login/';
+});
+
+function loadEnquiries() {
+  const container = document.getElementById('enquiries-container');
+  const countEl = document.getElementById('count-inquiries');
+  let enquiries = [];
+  try {
+    enquiries = JSON.parse(localStorage.getItem('dms_enquiries') || '[]');
+  } catch(e) {
+    enquiries = [];
+  }
+
+  // If empty, supply founder test sample
+  if (enquiries.length === 0) {
+    enquiries = [
+      {
+        id: 'sample-01',
+        name: 'Prospective Client (Demo Lead)',
+        biz: 'Luxury E-Commerce Brand',
+        email: 'client@example.com',
+        phone: '+8801700000000',
+        service: 'Meta Ads',
+        timeline: 'Within a month',
+        budget: '$1,500 - $3,000 / month',
+        brief: 'Looking to scale Facebook and Instagram acquisition campaigns with dynamic product ads and creative testing framework.',
+        date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      }
+    ];
+  }
+
+  countEl.textContent = enquiries.length;
+  container.innerHTML = '';
+
+  enquiries.forEach((item, idx) => {
+    const card = document.createElement('article');
+    card.className = 'enquiry-card';
+    const waText = encodeURIComponent(`Hello ${item.name}, thank you for your project enquiry with Digital Marketing with SAIFUL regarding ${item.service}. I have reviewed your brief.`);
+    const waLink = item.phone ? `https://wa.me/${item.phone.replace(/[^0-9]/g, '')}?text=${waText}` : `https://wa.me/8801533536004`;
+
+    card.innerHTML = `
+      <div class="enquiry-card-hdr">
+        <div>
+          <h3>${item.name} ${item.biz ? '· <span style="font-size:0.95rem;color:#8fb3b0">' + item.biz + '</span>' : ''}</h3>
+          <div class="enquiry-time">Submitted: ${item.date || 'Recent'}</div>
+        </div>
+        <span class="sector-badge" style="font-size:0.75rem">${item.service || 'General Enquiry'}</span>
+      </div>
+      <div class="enquiry-details">
+        <div><b>Email Address</b><a href="mailto:${item.email}" style="color:#13c2c2">${item.email}</a></div>
+        <div><b>Phone / WhatsApp</b>${item.phone ? '<a href="tel:' + item.phone + '" style="color:#13c2c2">' + item.phone + '</a>' : 'Not specified'}</div>
+        <div><b>Timeline</b>${item.timeline || 'Flexible'}</div>
+        <div><b>Target Budget</b>${item.budget || 'Open for discussion'}</div>
+      </div>
+      <div class="enquiry-brief">
+        <b style="color:#e6a137;display:block;margin-bottom:4px;font-size:0.8rem">PROJECT BRIEF</b>
+        ${item.brief}
+      </div>
+      <div class="enquiry-actions">
+        <a class="btn sm" href="${waLink}" target="_blank" rel="noopener">Reply on WhatsApp <span class="arw">→</span></a>
+        <a class="btn sm o" href="mailto:${item.email}?subject=Regarding%20Your%20Digital%20Marketing%20Project&body=${encodeURIComponent('Hi ' + item.name + ',\n\nThank you for reaching out to Digital Marketing with SAIFUL.')}">Send Email</a>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+document.getElementById('clear-leads-btn').addEventListener('click', function() {
+  if (confirm('Clear local lead history from this browser?')) {
+    localStorage.removeItem('dms_enquiries');
+    loadEnquiries();
+  }
+});
+
+loadEnquiries();
+</script>
+</body>
+</html>
