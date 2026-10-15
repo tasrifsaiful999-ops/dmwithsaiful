@@ -26,7 +26,9 @@ cards.forEach((c,k)=>c.addEventListener('click',()=>{if(!moved&&k!==a)set(k,fals
 stage.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();set(a+1,false)}if(e.key==='ArrowLeft'){e.preventDefault();set(a-1,false)}});
 stage.addEventListener('pointerdown',e=>{sx=e.clientX;moved=false});
 stage.addEventListener('pointermove',e=>{if(sx!==null&&Math.abs(e.clientX-sx)>12)moved=true});
-const end=e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>48){set(dx<0?a+1:a-1,false)}setTimeout(()=>moved=false,0)};stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',()=>{sx=null})})}
+const end=e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>48){set(dx<0?a+1:a-1,false)}setTimeout(()=>moved=false,0)};stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',()=>{sx=null});
+let wheelLock=false,wheelAccum=0;const WHEEL_THRESHOLD=25,WHEEL_COOLDOWN=360;
+root.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<6)return;e.preventDefault();if(wheelLock)return;wheelAccum+=e.deltaY;if(wheelAccum>=WHEEL_THRESHOLD){wheelLock=true;wheelAccum=0;set(a+1,false);setTimeout(()=>{wheelLock=false},WHEEL_COOLDOWN)}else if(wheelAccum<=-WHEEL_THRESHOLD){wheelLock=true;wheelAccum=0;set(a-1,false);setTimeout(()=>{wheelLock=false},WHEEL_COOLDOWN)}},{passive:false})})}
 function orbit(){const h=q('.hero');if(!h||h.__o||!('IntersectionObserver' in window))return;h.__o=1;new IntersectionObserver(es=>es.forEach(x=>h.classList.toggle('off',!x.isIntersecting))).observe(h)}
 function filters(){qa('[data-filter]').forEach(root=>{if(root.__f)return;root.__f=1;const chips=qa('[data-chip]',root),inp=q('[data-q]',root),items=qa('[data-item]',root),empty=q('[data-empty]',root);let g='all';
 const run=()=>{const s=(inp?inp.value:'').trim().toLowerCase();let n=0;items.forEach(it=>{const ok=(g==='all'||it.dataset.g.split(' ').includes(g))&&(!s||it.dataset.t.includes(s));it.hidden=!ok;if(ok)n++});if(empty)empty.hidden=n>0};
