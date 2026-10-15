@@ -1,0 +1,4 @@
+# Cloudflare Pages / Netlify Redirects
+https://www.dmwithsaiful.com/* https://dmwithsaiful.com/:splat 301!
+http://www.dmwithsaiful.com/* https://dmwithsaiful.com/:splat 301!
+http://dmwithsaiful.com/* https://dmwithsaiful.com/:splat 301!
