@@ -2053,17 +2053,35 @@ img, picture {
   max-width: 100%;
 }
 
-/* === CLEAN EXECUTIVE UI: REMOVE SCI-FI HUD & SECTOR BADGES === */
+/* === CLEAN EXECUTIVE UI: REMOVE SCI-FI HUD & SECTOR BADGES (PRESERVE 3D BACKGROUND ANIMATION) === */
 .spatial-hud,
-.spatial-canvas,
 .sector-badge,
 .hero-status-row,
-#spatial-walkthrough-canvas,
 .radar-pulse,
 .portal-badge {
   display: none !important;
   opacity: 0 !important;
   visibility: hidden !important;
   pointer-events: none !important;
+}
+
+#spatial-viewport {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+#spatial-canvas {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 0.85 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
