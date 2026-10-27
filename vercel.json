@@ -10,7 +10,7 @@
           "value": "www.dmwithsaiful.com"
         }
       ],
-      "destination": "https://dmwithsaiful.com/:path*",
+      "destination": "https://dmwithsaiful.vercel.app/:path*",
       "permanent": true
     }
   ],
@@ -18,6 +18,10 @@
     {
       "source": "/(.*)",
       "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
         {
           "key": "X-Frame-Options",
           "value": "SAMEORIGIN"
@@ -29,6 +33,10 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
         }
       ]
     },

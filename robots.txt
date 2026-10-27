@@ -1,5 +1,12 @@
+# OpenAI ChatGPT Search Bot (Discovery & search citations)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+
+# All other search engine crawlers (Google, Bing, DuckDuckGo, etc.)
 User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://dmwithsaiful.com/sitemap.xml
+# Canonical XML Sitemap
+Sitemap: https://dmwithsaiful.vercel.app/sitemap.xml

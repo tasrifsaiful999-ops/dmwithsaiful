@@ -126,7 +126,7 @@ function enquiry(){
 
     // Pre-fill WhatsApp message
     const waText = encodeURIComponent(
-      `Hello Saiful, I am submitting a project enquiry from dmwithsaiful.com:\n\n` +
+      `Hello Saiful, I am submitting a project enquiry from dmwithsaiful.vercel.app:\n\n` +
       `*Name:* ${leadData.name}\n` +
       `*Business:* ${leadData.biz || 'N/A'}\n` +
       `*Service:* ${leadData.service || 'General'}\n` +
